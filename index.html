@@ -72,13 +72,34 @@ background:#1e293b;
 <button onclick="send()">Send</button>
 </div>
 
-<script>
+ <script>
+const replies = [
+"Hello! 😊",
+"It's nice to see you here.",
+"Tell me something about yourself.",
+"You have a beautiful smile.",
+"I'm always here to chat with you.",
+"Every conversation with you feels special. ✨"
+];
+
 function send(){
-let t=document.getElementById("text");
-if(t.value=="") return;
-document.getElementById("chat").innerHTML+=
-'<div class="msg user">'+t.value+'</div>';
-t.value="";
+const input=document.getElementById("text");
+if(input.value.trim()=="") return;
+
+const chat=document.getElementById("chat");
+
+chat.innerHTML+=`<div class="msg user">${input.value}</div>`;
+
+let msg=input.value;
+input.value="";
+
+setTimeout(()=>{
+let reply=replies[Math.floor(Math.random()*replies.length)];
+chat.innerHTML+=`<div class="msg">${reply}</div>`;
+chat.scrollTop=chat.scrollHeight;
+},800);
+
+chat.scrollTop=chat.scrollHeight;
 }
 </script>
 
